@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="card my-3">
+        <div class="card-header">
+            <h2>Invoice example</h2>
+        </div>
+        <div class="card-body">
+            <invoice-view [id]="invoice.id" [name]="invoice.name"></invoice-view>
+
+            <div class="row">
+                <div class="col mt-3">                
+                    <client-view 
+                        [city]="invoice.client.address.city" 
+                        [country]="invoice.client.address.country" 
+                        [lastname]="invoice.client.lastName" 
+                        [name]="invoice.client.name" 
+                        [number]="invoice.client.address.number" 
+                        [street]="invoice.client.address.street">
+                    </client-view>
+                </div>
+                <div class="col mt-3">
+                    <company-view [fiscalNumber]="invoice.company.fiscalNumber" [name]="invoice.company.name"></company-view>
+                </div>
+            </div>
+
+            
+            <div class="mt-3">
+                <list-items [items]="invoice.items" (removeEventEmitter)="removeItem($event)"></list-items>
+            </div>
+
+            <total [total]="invoice.total"></total>
+
+            <form-item (addItemEventEmitter)="addItem($event)"></form-item>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<h3>Detalle de la factura</h3>
+@if (items.length > 0) {
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of items; track $index) {
+                <tr row-item [id]="item.id" [price]="item.price" [product]="item.product" [quantity]="item.quantity" (removeEventEmitter)="onRemove($event)"></tr>
+            }
+        </tbody>
+    </table>
+} @else {
+    <div class="alert alert-warning">
+        You don't have products.
+    </div>
+}
